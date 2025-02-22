@@ -11,7 +11,7 @@ const contentList = reactive([
   { text: "🍕 TypeScript", fullWidth: false },
   { text: "✨ Vant4 组件库", fullWidth: false },
   { text: "🍍 Pinia 状态管理", fullWidth: false },
-  { text: "🌀 Tailwindcss 原子类框架", fullWidth: true },
+  { text: "🌀 unocss 原子类框架", fullWidth: true },
   { text: "🗺️ Vue-router 4", fullWidth: false },
   { text: "👏 集成多种图标方案", fullWidth: false },
   { text: "🔧 集成 ESLint", fullWidth: false },
@@ -60,7 +60,7 @@ const contentList = reactive([
         v-for="item in contentList"
         :key="item.text"
         :class="[
-          'truncate p-[12px] rounded-[12px] border border-[var(--color-border)]',
+          'truncate p-[12px] rounded-[12px] border border-[var(--color-border)] bg-gray',
           item.fullWidth ? 'col-span-2' : ''
         ]"
       >

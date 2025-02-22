@@ -24,11 +24,9 @@ const cachedViews = computed(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import "@/styles/mixin.less";
-
+<style lang="scss" scoped>
 .app-wrapper {
-  .clearfix();
+  @include clearfix;
   position: relative;
   height: 100%;
   width: 100%;

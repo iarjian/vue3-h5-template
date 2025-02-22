@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cn } from "@/utils/class-names";
 import GridPattern from "./index.vue";
 
 defineOptions({
@@ -16,11 +15,6 @@ defineOptions({
       :height="18"
       :x="-1"
       :y="-1"
-      :class="
-        cn(
-          '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]'
-        )
-      "
     />
   </div>
 </template>

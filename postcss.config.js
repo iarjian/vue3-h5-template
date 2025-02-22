@@ -1,6 +1,5 @@
 export default {
   plugins: {
-    tailwindcss: {},
     // 使用 cnjm-postcss-px-to-viewport 规避 postcss.plugin was deprecated 警告
     "cnjm-postcss-px-to-viewport": {
       viewportWidth: 375, // 根据设计稿设定

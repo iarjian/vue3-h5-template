@@ -3,11 +3,12 @@ import { store } from "./store";
 // normalize.css
 import "normalize.css/normalize.css";
 // 全局样式
-import "./styles/index.less";
-// tailwindcss
-import "./styles/tailwind.css";
+import "./styles/index.scss";
+// uno.css
+import "virtual:uno.css";
 // svg icon
 import "virtual:svg-icons-register";
+
 import { initializeDarkMode } from "@/utils/dark-mode";
 import App from "./App.vue";
 import router from "./router";

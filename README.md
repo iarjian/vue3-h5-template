@@ -28,7 +28,7 @@
 - [x] ⚡ Vue3 + Vite5
 - [x] 🍕 TypeScript
 - [x] ✨ Vant4 组件库
-- [x] 🌀 Tailwindcss 原子类框架
+- [x] 🌀 unocss 原子类框架
 - [x] 👏 集成多种图标方案
 - [x] 🍍 Pinia 状态管理
 - [x] 🌓 支持深色模式
@@ -104,7 +104,7 @@ cd vue3-h5-template
 > - [调试面板 eruda](#console)
 > - [动态设置页面标题](#page-title)
 > - [vw 视口适配](#viewport)
-> - [Tailwindcss 原子类框架](#tailwindcss)
+> - [unocss 原子类框架](#unocss)
 > - [Git 提交信息规范](#git)
 > - [CDN 加载依赖](#CDN)
 
@@ -286,11 +286,12 @@ module.exports = {
 
 
 
-### <span id="tailwindcss">Tailwindcss 原子类框架</span>
+### <span id="unocss">unocss 原子类框架</span>
 
-Tailwindcss 从 3.0 版本开始默认使用 `JIT` 模式，打包代码不再臃肿，结合 `vite` 使用非常香~ 如果你还没使用过类似的框架，Tailwindcss 首页的[示例](https://tailwindcss.com/)非常直观。
+UnoCSS
+即时按需的原子化 CSS 引擎
 
-官方文档：https://tailwindcss.com/docs/padding
+UnoCSS中文网：https://unocss.nodejs.cn/
 
 
 

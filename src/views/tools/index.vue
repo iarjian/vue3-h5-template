@@ -23,7 +23,9 @@ const handleSuccessReq = async () => {
 };
 const handleErrorReq = () => {
   getListApiError().then(
-    () => {},
+    () => {
+      console.log("请求成功");
+    },
     err => {
       console.log(err);
       showFailToast("请求有误");
