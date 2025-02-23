@@ -21,3 +21,11 @@ export function getListApiError(data?: object): Promise<ListResult> {
     data
   });
 }
+
+export function getSeatListApi(params?: object): Promise<ListResult> {
+  return http.request({
+    url: "/list/seat/get",
+    method: "get",
+    params
+  });
+}

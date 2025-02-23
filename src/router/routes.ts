@@ -35,6 +35,15 @@ const routes: Array<RouteRecordRaw> = [
         }
       }
     ]
+  },
+  {
+    path: "/seatSelect",
+    name: "seatSelect",
+    component: () => import("@/views/seatSelect/index.vue"),
+    meta: {
+      title: "电影选座",
+      noCache: true
+    }
   }
 ];
 
