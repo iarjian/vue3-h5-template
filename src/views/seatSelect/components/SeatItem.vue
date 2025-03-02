@@ -1,11 +1,12 @@
 <template>
   <div
     class="seat-item"
+    :data="[seatItem.x, seatItem.y]"
     :style="{
       height: size + 'px',
       width: size + 'px',
-      top: seatItem.gRow * size + 'px',
-      left: seatItem.gCol * size + 'px'
+      top: seatItem.y * size + 'px',
+      left: seatItem.x * size + 'px'
     }"
   >
     <img class="seatImgClass" :seatId="seatItem.id" :src="seatItem.nowIcon" />

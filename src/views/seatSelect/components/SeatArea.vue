@@ -13,5 +13,9 @@
   position: relative;
   background: #f3f4f6;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

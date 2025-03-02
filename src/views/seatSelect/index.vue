@@ -8,21 +8,21 @@
           transform: 'scale(' + seatScale + ')',
           marginLeft: size + 'px'
         }" -->
-      <div class="h-full w-full flex justify-center items-center">
-        <div
-          class="seatBox"
-          :style="{
-            width: seatBoxWidth + 'px',
-            height: seatBoxHeight + 'px',
-            transform: 'scale(' + seatScale + ')'
-            // marginLeft: size + 'px'
-          }"
+      <div
+        class="seatBox"
+        :style="{
+          width: seatBoxWidth + 'px',
+          height: seatBoxHeight + 'px',
+          transform: 'scale(' + seatScale + ')'
+          // marginLeft: size + 'px'
+        }"
+      >
+        <template
+          v-for="seatItem in seatList"
+          :key="seatItem.x + '' + seatItem.y"
         >
-          {{ xMax }} {{ yMax }}
-          <template v-for="seatItem in seatList" :key="seatItem.id">
-            <SeatItem :seatItem="seatItem" :size="size"> </SeatItem>
-          </template>
-        </div>
+          <SeatItem :seatItem="seatItem" :size="size"> </SeatItem>
+        </template>
       </div>
 
       <!--以上为座位图具名插槽 结束-->
@@ -50,8 +50,8 @@ const showTime = ref<string>(""); // 展示用 开始时间 接口获取
 const xMax = computed(() => {
   let i = 0;
   for (let index in seatList.value) {
-    if (seatList.value[index].gCol > i) {
-      i = seatList.value[index].gCol;
+    if (seatList.value[index].x > i) {
+      i = seatList.value[index].x;
     }
   }
   return i;
@@ -61,8 +61,8 @@ const xMax = computed(() => {
 const yMax = computed(() => {
   let i = 0;
   for (let index in seatList.value) {
-    if (seatList.value[index].gRow > i) {
-      i = seatList.value[index].gRow;
+    if (seatList.value[index].y > i) {
+      i = seatList.value[index].y;
     }
   }
   return i;
@@ -105,6 +105,7 @@ const seatScale = computed(() => {
 const router = useRouter();
 async function getSeatList() {
   const response: any = await getSeatListApi();
+
   //座位返回
   if (response.errorCode !== 0) {
     router.go(-1);
@@ -116,54 +117,25 @@ async function getSeatList() {
     return;
   }
   resSeatList.forEach(element => {
-    // 获取座位的类型的首字母
-    let firstNumber = element.type.substr(0, 1);
-    // 在原来的对象中加入两个属性  otherLoveSeatIndex 对应情侣座位的原数组下标 otherLoveSeatId  对应情侣座位的Id
-    element.otherLoveSeatIndex = null;
-    element.otherLoveSeatId = null;
-    // 座位的类型的首字母为 '1' 是情侣首座 处理情侣首座位
-    if (firstNumber === "1") {
-      for (const index in resSeatList) {
-        if (
-          resSeatList[index].gRow === element.gRow &&
-          resSeatList[index].gCol === element.gCol + 1
-        ) {
-          element.otherLoveSeatIndex = index;
-          element.otherLoveSeatId = resSeatList[index].id;
-        }
-      }
-    }
-    // 座位的类型的首字母为 '2' 是情侣次座 处理情侣次座位
-    if (firstNumber === "2") {
-      for (const index in resSeatList) {
-        if (
-          resSeatList[index].gRow === element.gRow &&
-          resSeatList[index].gCol === element.gCol - 1
-        ) {
-          element.otherLoveSeatIndex = index;
-          element.otherLoveSeatId = resSeatList[index].id;
-        }
-      }
-    }
     // 加载座位的图标
     for (const item of response.seatTypeList) {
       // 加载每个座位的初始图标defautIcon 和 当前图标 nowIcon
-      if (element.type === item.type) {
+      if (element.type + "" === item.type) {
         element.nowIcon = item.icon;
         element.defautIcon = item.icon;
       }
-      // 根据首字母找到对应的被选中图标
-      if (firstNumber + "-1" === item.type) {
-        element.selectedIcon = item.icon;
-      }
-      // 根据首字母找到对应的被选中图标
-      if (firstNumber + "-2" === item.type) {
-        element.soldedIcon = item.icon;
-      }
-      // 根据首字母找到对应的被选中图标
-      if (firstNumber + "-3" === item.type) {
-        element.fixIcon = item.icon;
-      }
+      // // 根据首字母找到对应的被选中图标
+      // if (firstNumber + "-1" === item.type) {
+      //   element.selectedIcon = item.icon;
+      // }
+      // // 根据首字母找到对应的被选中图标
+      // if (firstNumber + "-2" === item.type) {
+      //   element.soldedIcon = item.icon;
+      // }
+      // // 根据首字母找到对应的被选中图标
+      // if (firstNumber + "-3" === item.type) {
+      //   element.fixIcon = item.icon;
+      // }
     }
     // 如果座位是已经售出 和 维修座位 加入属性canClick 判断座位是否可以点击
     if (
@@ -195,9 +167,6 @@ getSeatList();
 <style scoped lang="scss">
 .wapper {
   .seatBox {
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
     position: relative;
     // left: 50%;
     // transform-origin: 0rem 0rem 0rem;
